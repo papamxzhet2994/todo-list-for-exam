@@ -28,7 +28,7 @@ form {
   justify-content: center;
   flex-direction: column;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 100px;
   margin-bottom: 20px;
   padding: 20px;
   border: none;
@@ -37,6 +37,7 @@ form {
   box-sizing: border-box;
   background-color: #222;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+
 }
 
 input {
@@ -75,6 +76,15 @@ button:hover {
 
 button:active {
   transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+  form {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
 }
 
   </style>

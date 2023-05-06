@@ -10,25 +10,24 @@
       removeTask(task);
     }
   </script>
-  <ul>
+<ul>
     {#each tasks as task}
-      <li class:completed={task.completed}>
+    <li class:completed={task.completed}>
         <label>
-            <div class="checkbox">
-            <input type="checkbox" checked={task.completed} on:change={() => toggleCompleted(task)}/>
-          {task.text}
-          </div>
+            <input type="checkbox" on:change={() => toggleCompleted(task)} />
+            {task.text.replace(/\n/g, '<br/>')}
         </label>
         <button type="button" on:click={() => handleRemove(task)}>Удалить</button>
       </li>
+      
     {/each}
   </ul>
+  
   
 <style>
 
 ul {
   padding: 0;
-
 }
 
 
@@ -49,6 +48,7 @@ li {
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
   transition: all 0.2s ease-in-out;
+  white-space: pre-wrap;
 }
 
 li:hover {

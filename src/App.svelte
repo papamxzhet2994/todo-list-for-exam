@@ -2,6 +2,7 @@
   import TodoList from "./lib/TodoList.svelte";
   import AddTodo from "./lib/AddTodo.svelte";
   import { onMount } from "svelte";
+  
 
   let tasks = [];
   let showDescription = true;
@@ -31,6 +32,9 @@
     if (storedTasks) {
       tasks = JSON.parse(storedTasks);
       showDescription = false;
+    }
+    if (tasks.length === 0) {
+      showDescription = true;
     }
   }
 
@@ -72,7 +76,9 @@ h1 {
     color: black;
   }
 
-
+a {
+  text-decoration: none;
+}
 
   p {
     font-family: "Roboto", sans-serif;
@@ -83,5 +89,23 @@ h1 {
     max-width: 500px;
     margin: auto;
     color: #888;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      margin-top: 30px;
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      max-width: 90%;
+    }
   }
 </style>
