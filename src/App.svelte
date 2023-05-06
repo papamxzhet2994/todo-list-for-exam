@@ -1,6 +1,7 @@
 <script>
   import TodoList from "./lib/TodoList.svelte";
   import AddTodo from "./lib/AddTodo.svelte";
+  import { onMount } from "svelte";
 
   let tasks = [];
   let showDescription = true;
@@ -8,6 +9,7 @@
   function addTask(newTask) {
     tasks = [...tasks, { text: newTask, completed: false }];
     showDescription = false;
+    saveTasks();
   }
 
   function removeTask(taskToRemove) {
@@ -15,7 +17,26 @@
     if (tasks.length === 0) {
       showDescription = true;
     }
+    saveTasks();
   }
+
+  const localStorageKey = "todoList";
+
+  function saveTasks() {
+    localStorage.setItem(localStorageKey, JSON.stringify(tasks));
+  }
+
+  function loadTasks() {
+    const storedTasks = localStorage.getItem(localStorageKey);
+    if (storedTasks) {
+      tasks = JSON.parse(storedTasks);
+      showDescription = false;
+    }
+  }
+
+  onMount(() => {
+    loadTasks();
+  });
 </script>
 
 
