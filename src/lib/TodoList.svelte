@@ -11,19 +11,18 @@
     }
   </script>
 <ul>
-    {#each tasks as task}
-    <li class:completed={task.completed}>
-        <label>
-            <input type="checkbox" on:change={() => toggleCompleted(task)} />
-            {task.text.replace(/\n/g, '<br/>')}
-        </label>
-        <button type="button" on:click={() => handleRemove(task)}>Удалить</button>
-      </li>
-      
-    {/each}
-  </ul>
-  
-  
+  {#each tasks as task}
+  <li class:completed={task.completed}>
+      <label>
+        <input type="checkbox" on:change={() => toggleCompleted(task)} />
+        {task.text.replace(/\n/g, '<br/>')}
+      </label>
+      <button type="button" on:click={() => handleRemove(task)}>Удалить</button>
+  </li>
+  {/each}
+</ul>
+
+
 <style>
 
 ul {
@@ -32,13 +31,13 @@ ul {
 
 
 li {
+  display: flex;
   cursor: pointer;
   list-style: none;
   padding: 20px;
   border: 2px solid #ccc;
   border-radius: 10px;
   margin-bottom: 20px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -49,6 +48,7 @@ li {
   font-family: 'Roboto', sans-serif;
   transition: all 0.2s ease-in-out;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 li:hover {
@@ -69,7 +69,9 @@ li:last-of-type {
   margin-bottom: 0;
 }
 
+
 button {
+  display: flex;
   cursor: pointer;
   border: none;
   background-color: #ff3e00;
@@ -80,6 +82,7 @@ button {
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   transition: all 0.2s ease-in-out;
+  align-items: center;
 }
 
 button:hover {
